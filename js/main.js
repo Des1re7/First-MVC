@@ -23,7 +23,7 @@ $('#send_order').click(function (){
 		data: formData,
 		success: function (data) {
 			console.debug(data);
-			//alert(data);
+			alert(data);
 			//location.reload(true);
 		}
 	});
