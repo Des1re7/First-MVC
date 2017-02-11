@@ -2,20 +2,8 @@
 class Model_Order extends Model
 {
 	public function insert_data($items, $email, $phone)
-	{	
-		$sql_host = "localhost";
-		$sql_login = "root";
-		$sql_pass = "";
-		$sql_bd = "mvc";
-
-		$mysqli = new mysqli($sql_host, $sql_login, $sql_pass, $sql_bd);
-		if ($mysqli->connect_errno)
-		{
-			$msg = "Не удалось подключиться к MySQL: " . $mysqli->connect_error;
-			exit;
-		}
-		$mysqli->query("SET lc_time_names = 'ru_RU'");
-		$mysqli->query("SET NAMES 'utf8'");
+	{
+		$mysqli = parent::connect_db();
 	
 		$items_arr = explode(',', $items);
 		foreach($items_arr as $item)
