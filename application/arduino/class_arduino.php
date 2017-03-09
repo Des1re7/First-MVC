@@ -1,19 +1,26 @@
 <?php
-class Model
+abstract class Arduino
 {
-	public function get_data()
+	public $name;
+	public $proc;
+	public $ram;
+	
+	
+	/*function __construct($name, $proc, $ram)
 	{
-	}
+		$this->name	= $name;
+		$this->proc	= $proc;
+		$this->ram	= $ram;
+	}*/
 	
 	protected function connect_db()
 	{
-		//require '/../cfg/db_cfg.php';
 		require 'application/cfg/db_cfg.php';
 		
 		$mysqli = new mysqli($db_host, $db_login, $db_pass, $db_name);
 		if ($mysqli->connect_errno)
 		{
-			$msg = "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÑŒÑÑ Ðº MySQL: " . $mysqli->connect_error;
+			$msg = "Íå óäàëîñü ïîäêëþ÷èòüñÿ ê MySQL: " . $mysqli->connect_error;
 			exit($msg);
 		}
 		$mysqli->query("SET lc_time_names = 'ru_RU'");

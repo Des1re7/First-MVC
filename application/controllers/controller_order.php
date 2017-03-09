@@ -6,13 +6,16 @@ class Controller_Order extends Controller
 		$this->model = new Model_Order();
 		$this->view = new View();
 	}
-	
+
 	function action_index()
 	{
-		if(isset($_POST['items']) && isset($_POST['email']) && isset($_POST['phone']))
+		if (isset($_SESSION['user_id']))
 		{
-			$data = $this->model->insert_data($_POST['items'], $_POST['email'], $_POST['phone']);
-			$this->view->generate('order_view.php', 'template_view_clear.php', $data);
+			if(isset($_POST['items']))
+			{
+				$data = $this->model->insert_data($_POST['items']);
+				$this->view->generate('order_view.php', 'template_view_clear.php', $data);
+			}
 		}
 	}
 }
